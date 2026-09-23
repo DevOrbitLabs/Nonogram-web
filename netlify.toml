@@ -1,0 +1,43 @@
+[build]
+  publish = "."
+  command = ""
+
+[[redirects]]
+  from = "/privacy-policy"
+  to = "/privacy.html"
+  status = 200
+
+[[redirects]]
+  from = "/terms"
+  to = "/terms.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy.html"
+  status = 200
+
+# The app's Settings screen links to /nonogram/privacy and /nonogram/terms.
+# Serve those paths here too so an older build's links resolve.
+[[redirects]]
+  from = "/nonogram/privacy"
+  to = "/privacy.html"
+  status = 200
+
+[[redirects]]
+  from = "/nonogram/terms"
+  to = "/terms.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

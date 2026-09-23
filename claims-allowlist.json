@@ -1,0 +1,14 @@
+{
+  "_README": "Every entry must carry `evidence`: a file:line in the app repo, or the live-ASC endpoint that proves the claim. An entry with an empty evidence string FAILS the gate — that is deliberate.",
+  "allow": {
+    "privacy.html::privacy_absolute::stays on your device": {
+      "evidence": "Nonogram/Core/Save/CloudKitSaveStore.swift:11 (the iCloud leg is NSUbiquitousKeyValueStore, CloudKit-free) and :137 (ubiquitousStore defaults to NSUbiquitousKeyValueStore.default); Docs/PRIVACY/DECLARATION.md section 5 reads 'First-party backend: None detected' after privacy_scan.py --scan, 2026-09-23",
+      "note": "Scoped to GAME PROGRESS, which is written locally and mirrored only into the player's own iCloud key-value store. There is no server of ours in the path: the only two network hosts anywhere in the app are an apps.apple.com write-review deep link and the outbound links to this site, both recorded benign in the declaration. It does NOT claim the app sends nothing — the analytics, ads and purchase flows are disclosed in the table directly below this sentence."
+    },
+    "privacy.html::privacy_absolute::we have no access": {
+      "evidence": "Nonogram/Resources/Nonogram.entitlements — the only iCloud entitlement is com.apple.developer.ubiquity-kvstore-identifier; there is NO com.apple.developer.icloud-container-identifiers key, so no CloudKit container exists to read. Nonogram/Core/Save/CloudKitSaveStore.swift:15 records that nothing in the file imports CloudKit or CKContainer, because an unused entitlement is a 2.4.5(i) risk. Verified 2026-09-23",
+      "note": "Scoped to the iCloud MIRROR in the sentence it sits in. NSUbiquitousKeyValueStore writes into the user's own private iCloud container; with no CloudKit container declared there is no developer-readable database and no API by which the developer could read those values."
+    }
+  },
+  "_REVERIFY": "Re-check both entries whenever Docs/PRIVACY/DECLARATION.md is re-derived — its code fingerprint reopens that question by design. An added SDK or a new host can make either sentence false."
+}

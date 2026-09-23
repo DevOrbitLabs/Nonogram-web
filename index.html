@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nonogram: Cozy Picture Cross — logic puzzles that turn into pixel art</title>
+<meta name="description" content="Read the number clues, fill the squares, and a small pixel picture appears. A cozy picture-cross puzzle for iPhone and iPad, with a daily puzzle, a gallery that fills up, and no energy meter to wait on.">
+<meta name="keywords" content="nonogram, nonograms, picture cross, cozy puzzle, pixel art puzzle, logic puzzle, hanjie, daily nonogram, grid puzzle, number puzzle, brain game, iphone puzzle game, ipad puzzle game">
+<meta name="apple-itunes-app" content="app-id=6795158972">
+<meta name="theme-color" content="#F7F6F3">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nonogram: Cozy Picture Cross">
+<meta property="og:description" content="Read the number clues, fill the squares, and a small pixel picture appears. A cozy picture-cross puzzle for iPhone and iPad.">
+<meta property="og:image" content="assets/og-cover.png">
+<meta property="og:site_name" content="Nonogram: Cozy Picture Cross">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nonogram: Cozy Picture Cross">
+<meta name="twitter:description" content="Read the number clues, fill the squares, and a small pixel picture appears.">
+<meta name="twitter:image" content="assets/og-cover.png">
+
+<link rel="icon" href="assets/icon-1024.png">
+<link rel="apple-touch-icon" href="assets/icon-1024.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <img class="mark" src="assets/icon-1024.png" alt="" width="40" height="40">
+    <span class="wordmark">Nonogram<span>: Cozy Picture Cross</span></span>
+    <a class="btn btn-primary btn-sm" href="https://apps.apple.com/app/id6795158972">Get it on the App Store</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ── hero: the app icon, as a puzzle you can actually solve ─────────── -->
+<section class="hero">
+  <div class="wrap hero-in">
+    <div>
+      <h1>The clues are numbers.<br>The answer is a picture.</h1>
+      <p class="lede">Every puzzle is a grid of empty squares and a margin full of numbers. Work out which squares are filled, and a small pixel picture comes out the other side.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6795158972">Get it on the App Store</a>
+        <a class="btn btn-quiet" href="#how">How it works</a>
+      </div>
+      <p class="promise">No energy meter. No waiting. <b>Every puzzle is open from the moment you install</b> — and if an attempt goes wrong, starting it again is instant and costs nothing.</p>
+    </div>
+
+    <div class="play">
+      <div class="play-head">
+        <span class="t">Try one — this is the app icon</span>
+        <span class="s">6 × 6</span>
+      </div>
+
+      <div class="puz" id="puz" role="group" aria-label="A six by six nonogram. Tap a square once to fill it, twice to mark it empty.">
+        <div class="corner"></div>
+        <div class="cols" id="colClues"></div>
+        <div class="rows" id="rowClues"></div>
+        <div class="cells" id="cells"></div>
+      </div>
+
+      <div class="play-foot">
+        <button class="btn btn-quiet btn-sm" id="solveBtn" type="button">Show the answer</button>
+        <button class="btn btn-quiet btn-sm" id="resetBtn" type="button" hidden>Clear</button>
+        <p class="hint" id="hint">Tap once to fill, again to rule out.</p>
+        <p class="reveal-name" id="revealName" hidden>That's a tree.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gridrule" aria-hidden="true"></div>
+
+<!-- ── how it works ───────────────────────────────────────────────────── -->
+<section id="how" class="warm">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Three numbers, one picture</h2>
+      <p>A clue like <strong>2 1</strong> means that line holds a run of two filled squares, then at least one gap, then a single one. Nothing is guessed — every puzzle in the game can be solved by reasoning alone.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="mini" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <h3>Start with the certainties</h3>
+        <p>A row of six in a six-wide grid can only be filled one way. Those free squares are the foothold for everything else.</p>
+      </div>
+      <div class="step">
+        <div class="mini" aria-hidden="true">
+          <i></i><i></i><i class="f"></i><i class="f"></i><i></i><i></i>
+          <i></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i>
+          <i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <h3>Cross out what cannot be</h3>
+        <p>Ruling a square out is as useful as filling one in. Undo is free and unlimited, so there is no cost to changing your mind.</p>
+      </div>
+      <div class="step">
+        <div class="mini" aria-hidden="true">
+          <i></i><i></i><i class="g"></i><i class="g"></i><i></i><i></i>
+          <i></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i></i>
+          <i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i>
+          <i></i><i></i><i class="b"></i><i class="b"></i><i></i><i></i>
+          <i></i><i></i><i class="b"></i><i class="b"></i><i></i><i></i>
+          <i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i>
+        </div>
+        <h3>The picture colours itself in</h3>
+        <p>The last square you place is the one that turns a grid of marks into something you recognise. Then it is yours, and it goes on the shelf.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── features, each one the screen beside it ────────────────────────── -->
+<section>
+  <div class="wrap">
+
+    <div class="feat">
+      <div class="feat-copy">
+        <h3>It remembers where you stopped</h3>
+        <p>The home screen opens on whatever you were in the middle of — here, a puzzle 44&nbsp;% done — with the next one queued beside it and today's daily puzzle underneath. The calendar below keeps a quiet record of the days you showed up.</p>
+        <p class="feat-note">Coins and a day streak sit at the top. Coins buy hints, a second chance and cosmetics. They never buy access to a puzzle.</p>
+      </div>
+      <div class="phone"><div class="screen"><div class="island"></div><img src="assets/screens/05-home-in-progress.png" alt="The home screen: a coins chip and a six day streak, a card showing a puzzle in progress at 44 percent with the next puzzle beside it, a daily puzzle card for Wednesday 23 September, and a September calendar with nine solved days circled in green." width="1206" height="2622" loading="lazy" decoding="async"></div></div>
+    </div>
+
+    <div class="feat flip">
+      <div class="feat-copy">
+        <h3>Ten by ten, and room to think</h3>
+        <p>Clue strips run along the top and the left, the board is divided into blocks of five so you can count without losing your place, and three controls sit under your thumb: fill or rule&nbsp;out, undo, hint.</p>
+        <p class="feat-note">The three dots are the attempt's lives. Three mistakes end that attempt — not the puzzle, which stays open, and which you can start again straight away for nothing.</p>
+      </div>
+      <div class="phone"><div class="screen"><div class="island"></div><img src="assets/screens/08-board-dense-portrait.png" alt="A ten by ten board titled Puzzle 15, with number clues above every column and beside every row, three green life dots in the corner, a few squares ruled out with an X, and a fill-or-cross toggle, an undo button and a hint button along the bottom." width="1206" height="2622" loading="lazy" decoding="async"></div></div>
+    </div>
+
+    <div class="feat">
+      <div class="feat-copy">
+        <h3>Every solve has a name</h3>
+        <p>Finish the grid and the squares drop their outlines and turn into the picture they were describing the whole time. This one is called Rainbow. There are one hundred and ninety-five of them.</p>
+      </div>
+      <div class="phone"><div class="screen"><div class="island"></div><img src="assets/screens/09-reveal-framed-picture.png" alt="A completed puzzle shown as finished pixel art: three stacked arcs in deep red, ochre and slate blue on a cream ground, captioned Rainbow, with a green Continue button underneath." width="1206" height="2622" loading="lazy" decoding="async"></div></div>
+    </div>
+
+    <div class="feat flip">
+      <div class="feat-copy">
+        <h3>A shelf that fills up</h3>
+        <p>Solved pictures go into a gallery — an accordion, a backpack, a bone, a bowtie, a gift, an orange slice, a paw print, a pillow, a plug, a cooking pot, a quilt, a ring, a rug, a train. Seeing the gaps is most of the reason to come back.</p>
+      </div>
+      <div class="phone"><div class="screen"><div class="island"></div><img src="assets/screens/12-collection.png" alt="The Collection gallery: a grid of finished pixel pictures with their names underneath — Accordion, Backpack, Bone, Bowtie, Gift, Orange Slice, Paw Print, Pillow, Plug, Cooking Pot, Quilt, Ring, Rug and Train." width="1206" height="2622" loading="lazy" decoding="async"></div></div>
+    </div>
+
+    <div class="feat">
+      <div class="feat-copy">
+        <h3>Seasonal sets, free</h3>
+        <p>Each season brings its own set of twenty pictures with empty frames waiting where the unsolved ones go. The app says it plainly on the screen: every seasonal puzzle is free.</p>
+      </div>
+      <div class="phone"><div class="screen"><div class="island"></div><img src="assets/screens/14-seasonal.png" alt="The Seasonal screen: a card reading Summer, 7 of 20 collected, with a progress bar, the line Every seasonal puzzle is free, then a grid of seven finished pixel pictures followed by empty grey frames for the ones still to solve." width="1206" height="2622" loading="lazy" decoding="async"></div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── iPad ───────────────────────────────────────────────────────────── -->
+<section class="warm">
+  <div class="wrap feat">
+    <div class="feat-copy">
+      <h3>On iPad it is a bigger board, not a bigger phone</h3>
+      <p>The iPad layout is drawn for the iPad: the grid takes the width it is given, the clue strips grow with it, and the controls stay where your hand is. Your progress follows you between the two through your own iCloud account.</p>
+    </div>
+    <div class="phone tablet"><div class="screen"><img src="assets/screens/ipad-board.png" alt="The same ten by ten puzzle on iPad, with the board filling most of the screen, large clue numbers above the columns and beside the rows, and the fill, undo and hint controls centred along the bottom." width="2064" height="2752" loading="lazy" decoding="async"></div></div>
+  </div>
+</section>
+
+<!-- ── plain facts ────────────────────────────────────────────────────── -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The plain facts</h2>
+    </div>
+    <div class="facts">
+      <div class="fact"><span class="k">195 puzzles</span><span class="v">Across seventeen packs, plus a new daily puzzle each day. All of them ship inside the app, so a solve does not need a connection.</span></div>
+      <div class="fact"><span class="k">Seven languages</span><span class="v">English, German, French, Spanish, Italian, Japanese and Korean — the game is mostly pictures and numbers, so very little gets lost.</span></div>
+      <div class="fact"><span class="k">iPhone and iPad</span><span class="v">A single download covers both, iOS 18 and later, with Game Center achievements and iCloud progress.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ────────────────────────────────────────────────────────────── -->
+<section class="warm">
+  <div class="wrap">
+    <div class="section-head"><h2>Questions</h2></div>
+    <div class="faq">
+      <details>
+        <summary>I have never played one of these. Is it hard?</summary>
+        <p>The first few puzzles are five squares across and teach you the one rule you need. It is logic, not arithmetic — the numbers describe runs of filled squares, and you never have to add anything up.</p>
+      </details>
+      <details>
+        <summary>What happens when I get one wrong?</summary>
+        <p>An attempt carries three lives. Three wrong squares end that attempt and clear the board. The puzzle itself stays open, and starting it again is immediate and costs nothing. Undo is free and there is no limit on it.</p>
+      </details>
+      <details>
+        <summary>Is there an energy bar or a timer between puzzles?</summary>
+        <p>No. There is nothing to wait for and nothing to refill. Every puzzle in the app is unlocked from the first launch.</p>
+      </details>
+      <details>
+        <summary>Does it show ads?</summary>
+        <p>Yes. There is a banner, and an ad at some points between puzzles. A few optional extras — a hint, a second chance at an attempt — can be taken by watching a short video instead of spending coins, if you would rather. None of it is required to keep playing.</p>
+      </details>
+      <details>
+        <summary>What can I buy, and do I have to?</summary>
+        <p>Optional one-off items only: coins, and a few conveniences and cosmetics. There is no subscription. Coins are never needed to open a puzzle, and the pictures that unlock new areas cannot be bought at any price — they are earned by solving. Current prices are displayed in the App and on the App Store, and may vary by region.</p>
+      </details>
+      <details>
+        <summary>Will my progress move to my other device?</summary>
+        <p>Yes, through your own iCloud account, as long as you are signed in to the same Apple Account on both. Your saves are also kept on the device itself, so the game works when you are offline.</p>
+      </details>
+      <details>
+        <summary>Who made it?</summary>
+        <p>A very small independent studio. If something is broken or you have an idea, the support address below reaches a person.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────────────────────────────── -->
+<section>
+  <div class="wrap cta">
+    <h2>Start with one square</h2>
+    <p class="lede">The rest follows from it.</p>
+    <p><a class="btn btn-primary" href="https://apps.apple.com/app/id6795158972">Get it on the App Store</a></p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img class="mark" src="assets/icon-1024.png" alt="" width="40" height="40" style="margin-bottom:.75rem">
+        <p style="margin:0;color:var(--ink-soft);max-width:34ch">Nonogram: Cozy Picture Cross — a picture-cross puzzle game for iPhone and iPad.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="https://apps.apple.com/app/id6795158972">App Store</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal &amp; support</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Use</a></li>
+          <li><a href="mailto:halimozturk@windowslive.com">halimozturk@windowslive.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="colophon">
+      <p>© <span id="yr">2026</span> DevOrbit Labs. All rights reserved.</p>
+      <p>Not affiliated with or endorsed by Nintendo or any Picross or Griddlers trademark holder. Apple, the Apple logo, iPhone, iPad and iCloud are trademarks of Apple Inc.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MobileApplication",
+      "name": "Nonogram: Cozy Picture Cross",
+      "applicationCategory": "GameApplication",
+      "applicationSubCategory": "Puzzle",
+      "operatingSystem": "iOS 18.0 or later",
+      "description": "Read the number clues, fill the squares, and a small pixel picture appears. A cozy picture-cross puzzle for iPhone and iPad, with a daily puzzle, a gallery that fills up, and no energy meter to wait on.",
+      "author": { "@type": "Organization", "name": "DevOrbit Labs" },
+      "inLanguage": ["en", "de", "fr", "es", "it", "ja", "ko"]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "I have never played one of these. Is it hard?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The first few puzzles are five squares across and teach you the one rule you need. It is logic, not arithmetic — the numbers describe runs of filled squares, and you never have to add anything up." } },
+        { "@type": "Question", "name": "What happens when I get one wrong?",
+          "acceptedAnswer": { "@type": "Answer", "text": "An attempt carries three lives. Three wrong squares end that attempt and clear the board. The puzzle itself stays open, and starting it again is immediate and costs nothing. Undo is free and there is no limit on it." } },
+        { "@type": "Question", "name": "Is there an energy bar or a timer between puzzles?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. There is nothing to wait for and nothing to refill. Every puzzle in the app is unlocked from the first launch." } },
+        { "@type": "Question", "name": "Does it show ads?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. There is a banner, and an ad at some points between puzzles. A few optional extras can be taken by watching a short video instead of spending coins. None of it is required to keep playing." } },
+        { "@type": "Question", "name": "What can I buy, and do I have to?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Optional one-off items only: coins, and a few conveniences and cosmetics. There is no subscription. Coins are never needed to open a puzzle. Current prices are displayed in the App and on the App Store, and may vary by region." } },
+        { "@type": "Question", "name": "Will my progress move to my other device?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, through your own iCloud account, as long as you are signed in to the same Apple Account on both. Your saves are also kept on the device itself, so the game works when you are offline." } }
+      ]
+    }
+  ]
+}
+</script>
+
+<script>
+(function () {
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // The app icon, as data. 0 empty · g canopy · b trunk.
+  var SOL = [
+    ['', '', 'g', 'g', '', ''],
+    ['', 'g', 'g', 'g', 'g', ''],
+    ['g', 'g', 'g', 'g', 'g', 'g'],
+    ['', '', 'b', 'b', '', ''],
+    ['', '', 'b', 'b', '', ''],
+    ['b', 'b', 'b', 'b', 'b', 'b']
+  ];
+  var N = 6;
+
+  function runs(line) {
+    var out = [], n = 0;
+    for (var i = 0; i < line.length; i++) {
+      if (line[i]) { n++; } else if (n) { out.push(n); n = 0; }
+    }
+    if (n) out.push(n);
+    return out.length ? out : [0];
+  }
+
+  var rowClues = SOL.map(runs);
+  var colClues = [];
+  for (var c = 0; c < N; c++) {
+    colClues.push(runs(SOL.map(function (r) { return r[c]; })));
+  }
+
+  var colBox = document.getElementById('colClues');
+  var rowBox = document.getElementById('rowClues');
+  var cellBox = document.getElementById('cells');
+
+  colClues.forEach(function (cl) {
+    var d = document.createElement('div');
+    d.className = 'clue';
+    d.setAttribute('aria-hidden', 'true');
+    cl.forEach(function (n) { var s = document.createElement('span'); s.textContent = n; d.appendChild(s); });
+    colBox.appendChild(d);
+  });
+  rowClues.forEach(function (cl) {
+    var d = document.createElement('div');
+    d.className = 'clue';
+    d.setAttribute('aria-hidden', 'true');
+    cl.forEach(function (n) { var s = document.createElement('span'); s.textContent = n; d.appendChild(s); });
+    rowBox.appendChild(d);
+  });
+
+  var cells = [];
+  var solved = false;
+
+  for (var r = 0; r < N; r++) {
+    for (var cc = 0; cc < N; cc++) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'cell';
+      b.dataset.s = '0';
+      b.dataset.c = SOL[r][cc];
+      b.dataset.r = r;
+      b.dataset.col = cc;
+      b.setAttribute('aria-label',
+        'Row ' + (r + 1) + ' of ' + N + ', column ' + (cc + 1) + ' of ' + N +
+        '. Row clue ' + rowClues[r].join(' ') + ', column clue ' + colClues[cc].join(' ') + '. Empty.');
+      b.addEventListener('click', onTap);
+      cellBox.appendChild(b);
+      cells.push(b);
+    }
+  }
+
+  var STATE_WORD = { '0': 'Empty.', '1': 'Filled.', '2': 'Ruled out.' };
+
+  function onTap(e) {
+    if (solved) return;
+    var b = e.currentTarget;
+    b.dataset.s = String((Number(b.dataset.s) + 1) % 3);
+    var l = b.getAttribute('aria-label');
+    b.setAttribute('aria-label', l.replace(/(Empty|Filled|Ruled out)\.$/, STATE_WORD[b.dataset.s]));
+    check();
+  }
+
+  function check() {
+    for (var i = 0; i < cells.length; i++) {
+      var want = cells[i].dataset.c ? '1' : '';
+      if (want === '1' && cells[i].dataset.s !== '1') return;
+      if (want === '' && cells[i].dataset.s === '1') return;
+    }
+    finish();
+  }
+
+  var puz = document.getElementById('puz');
+  var hint = document.getElementById('hint');
+  var name = document.getElementById('revealName');
+  var solveBtn = document.getElementById('solveBtn');
+  var resetBtn = document.getElementById('resetBtn');
+
+  function finish() {
+    solved = true;
+    puz.classList.add('solved');
+    hint.hidden = true;
+    name.hidden = false;
+    solveBtn.hidden = true;
+    resetBtn.hidden = false;
+  }
+
+  solveBtn.addEventListener('click', function () {
+    cells.forEach(function (b) { b.dataset.s = b.dataset.c ? '1' : '0'; });
+    finish();
+  });
+
+  resetBtn.addEventListener('click', function () {
+    solved = false;
+    puz.classList.remove('solved');
+    cells.forEach(function (b) {
+      b.dataset.s = '0';
+      b.setAttribute('aria-label', b.getAttribute('aria-label').replace(/(Empty|Filled|Ruled out)\.$/, 'Empty.'));
+    });
+    hint.hidden = false;
+    name.hidden = true;
+    solveBtn.hidden = false;
+    resetBtn.hidden = true;
+  });
+})();
+</script>
+
+</body>
+</html>
