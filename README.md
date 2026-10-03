@@ -29,12 +29,17 @@ Nothing here was written from a template or from memory.
 
 - **Palette** is the app's own asset catalog — `Surface #F7F6F3`, `LaunchBackground #F6F2E8`,
   `BoardBackground #D2CDC4`, `ClueText #292826`, `AccentColor #4D9850` — plus two colours sampled
-  from the app icon, its canopy `#52A153` and its trunk `#AA7A3E`.
-- **Screenshots** in `assets/screens/` are unframed captures from the app's own design-review pass
-  (`Docs/DESIGN/finalpass/` in the app repo). The iPhone bezel is CSS. Every caption describes the
-  exact screen it sits beside.
-- **The hero puzzle is the app icon.** Its six-by-six solution and its real row and column clues are
-  in `index.html`; solving it colours the tree in the icon's own two colours.
+  from an earlier app icon (a tree), its canopy `#52A153` and its trunk `#AA7A3E`. Those two still
+  colour the hero puzzle below, which was never updated to the current icon — see the hero note.
+- **Screenshots** in `assets/screens/` are RAW, unframed captures from the app's own
+  `Docs/Screenshots/en-US/{iphone,ipad}/` (2026-10-03). The iPhone/iPad bezel is CSS. Every caption
+  describes the exact screen it sits beside.
+- **The hero puzzle is an earlier app icon, kept on purpose.** Its six-by-six solution and its real
+  row and column clues are in `index.html`; solving it colours a tree in that earlier icon's two
+  colours. The current app icon (a green clue-corner mark with a hot-air balloon) is used everywhere
+  else on the site — the nav mark, the footer mark, `assets/icon-1024.png` and `assets/og-cover.png`
+  — but the interactive hero puzzle itself was deliberately left unchanged; reworking a 36-cell
+  solvable puzzle for the new icon is tracked separately, not done in this pass.
 - **The legal pages are derived from `Docs/PRIVACY/DECLARATION.md`** in the app repo, which
   `Scripts/privacy_scan.py --scan` produces by measuring the binary — the SDKs it links, the hosts it
   contacts, the payloads it sends. They are not a template's optimistic defaults.
