@@ -1,0 +1,4 @@
+# In-App Event links. https://<site>/e/<id> is a universal link: with the app installed iOS opens it
+# in the app (see /.well-known/apple-app-site-association, paths "/e/*"); without it, this page
+# sends the visitor to the App Store.
+/e/*        /e/index.html    200
