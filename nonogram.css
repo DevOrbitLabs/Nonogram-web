@@ -1,0 +1,48 @@
+/* Nonogram — the app's own face on the shared family skeleton (family.css v1.0.1).
+   Stage colours = the app icon: the deep green of its grid and the amber of its pixel picture.
+   Aura and sheen = the icon's leaf green, tomato red and amber. */
+:root {
+  --g1:#0c2414; --g2:#2c7d45; --acc:#ffb347; --sfg:#ffffff;
+  --aura1:#5cc27a; --aura2:#f2a33a; --aura3:#e0584a;
+  --sheen:linear-gradient(90deg,#1f7a3d,#2f9a52 25%,#c9482f 45%,#d98a1c 65%,#1f7a3d 85%,#2f9a52);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --aura1:#2f7a49; --aura2:#a8691c; --aura3:#9c3a30;
+  --sheen:linear-gradient(90deg,#6fdc8f,#a9f0bd 25%,#ff9a85 45%,#ffc66b 65%,#6fdc8f 85%,#a9f0bd) } }
+:root[data-theme="dark"] {
+  --aura1:#2f7a49; --aura2:#a8691c; --aura3:#9c3a30;
+  --sheen:linear-gradient(90deg,#6fdc8f,#a9f0bd 25%,#ff9a85 45%,#ffc66b 65%,#6fdc8f 85%,#a9f0bd) }
+
+/* --g2 is a mid green: right for the stages, too dark for small marks on the dark page. */
+:root { --pip:#2c7d45 }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --pip:#6fdc8f } }
+:root[data-theme="dark"] { --pip:#6fdc8f }
+.chip.dot::before { background:var(--pip) }
+.card .ico { color:var(--pip); background:color-mix(in srgb, var(--pip) 14%, var(--surface)) }
+
+#trust .cards { grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)) }
+
+/* hero stat row */
+.facts { display:flex; flex-wrap:wrap; gap:10px 28px; margin-top:28px; padding:0; list-style:none; color:var(--muted); font-size:15px; font-weight:500 }
+.facts b { display:block; font:800 28px/1 var(--display); letter-spacing:-.03em; color:var(--fg) }
+@media (max-width:600px) { .facts { gap:8px 22px } .facts b { font-size:24px } }
+
+.note { margin:18px 0 0; font-size:14px; opacity:.7; max-width:44ch }
+
+/* the iPad board */
+.padshot { margin:0; max-width:1000px; margin-inline:auto }
+.padshot img { width:100%; height:auto; border-radius:clamp(14px,1.6vw,24px); box-shadow:0 30px 60px -20px rgb(0 0 0 / .45), 0 0 0 1px var(--line) }
+
+/* closing call */
+.cta { margin-top:clamp(56px,8vw,112px); padding-inline:clamp(8px,2vw,24px) }
+.cta .stage { grid-template-columns:minmax(0,1fr); text-align:center; justify-items:center; padding-block:clamp(48px,7vw,96px) }
+.cta .line { margin-inline:auto }
+.cta .water { right:auto; left:50%; translate:-50% 0 }
+footer .disclaim { margin:0; max-width:70ch }
+
+/* legal pages: sub-heads, tables and small print from the existing policy text */
+.legal-page h3 { font:600 17px/1.3 var(--body); margin:24px 0 8px }
+.legal-page strong { color:var(--fg) }
+.legal-page table { width:100%; border-collapse:collapse; font-size:14px; margin:16px 0; display:block; overflow-x:auto }
+.legal-page th, .legal-page td { text-align:left; vertical-align:top; padding:8px 10px; border-bottom:1px solid var(--line) }
+.legal-page .small-print { font-size:13px; margin-top:40px }
