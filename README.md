@@ -3,7 +3,7 @@
 The showcase site and the App-Store-required legal pages for **Nonogram: Cozy Picture Cross**
 (iOS, App Store id `6795158972`).
 
-Live: <https://nonogramcozy.netlify.app>
+Live: <https://nonogram.halimozturk.com> (family design v1; see `family.css` + `nonogram.css`). Deployed by CLI (`netlify deploy`), not git-linked.
 
 | Page | Path | Also served at |
 |---|---|---|
