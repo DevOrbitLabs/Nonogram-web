@@ -1,0 +1,29 @@
+/* halimozturk.com — family events component v1.0 (2026-10-14)
+   "Now in the app": the app's live In-App Event as a card under the hero, and its past events as a
+   strip of smaller event cards. Data: /events/events.json (written by gemappfinder
+   tools/web/event_sync.py from App Store Connect). Rendered by events.js. Copy verbatim; edit here. */
+.evt { padding-block:clamp(36px,6vw,72px) 0 }
+.evt[hidden] { display:none }
+.evt-now { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); border-radius:clamp(22px,2.6vw,32px); overflow:hidden;
+  background:linear-gradient(135deg,var(--g1),var(--g2)); color:var(--sfg); text-decoration:none; isolation:isolate;
+  box-shadow:0 30px 60px -30px color-mix(in srgb, var(--g2) 70%, transparent); transition:transform .25s }
+.evt-now:hover { transform:translateY(-3px) }
+.evt-now img { display:block; width:100%; height:100%; aspect-ratio:16/9; object-fit:cover }
+.evt-body { display:grid; align-content:center; gap:12px; padding:clamp(22px,3.4vw,44px) }
+.evt-eyebrow { display:flex; align-items:center; gap:10px; margin:0; font:600 12px/1 var(--body); letter-spacing:.14em; text-transform:uppercase; opacity:.9 }
+.evt-eyebrow::before { content:""; width:9px; height:9px; border-radius:50%; background:var(--acc); box-shadow:0 0 0 0 var(--acc); animation:evt-pulse 2.2s ease-out infinite }
+.evt-body h3 { margin:0; font:700 clamp(26px,3.2vw,40px)/1.05 var(--display); letter-spacing:-.025em }
+.evt-body p { margin:0; font-size:17px; line-height:1.45; opacity:.88 }
+.evt-meta { display:flex; flex-wrap:wrap; align-items:center; gap:12px 16px; margin-top:6px }
+.evt-when { font-weight:600; font-size:15px; opacity:.85 }
+.evt-cta { display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:10px 18px; border-radius:999px; background:var(--acc); color:#14161c; font-weight:700; font-size:15px }
+.evt-cta svg { width:16px; height:16px }
+.evt-past { margin-top:clamp(28px,4vw,48px) }
+.evt-past h4 { margin:0 0 14px; font:600 13px/1 var(--body); letter-spacing:.14em; text-transform:uppercase; color:var(--muted) }
+.evt-strip { display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding:0 0 10px; margin:0; list-style:none; scrollbar-width:thin }
+.evt-strip li { flex:0 0 clamp(200px,22vw,260px); scroll-snap-align:start; margin:0 }
+.evt-strip img { display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; border-radius:16px; border:1px solid var(--line); background:var(--surface) }
+.evt-strip span { display:block; margin-top:8px; font-size:13px; line-height:1.3; color:var(--muted) }
+@keyframes evt-pulse { 0% { box-shadow:0 0 0 0 color-mix(in srgb, var(--acc) 70%, transparent) } 80%,100% { box-shadow:0 0 0 10px transparent } }
+@media (max-width:760px) { .evt-now { grid-template-columns:1fr } .evt-body p { font-size:16px } }
+@media (prefers-reduced-motion: reduce) { .evt-eyebrow::before { animation:none } .evt-now { transition:none } }
