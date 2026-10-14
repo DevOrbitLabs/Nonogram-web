@@ -1,4 +1,4 @@
-/* halimozturk.com — family stylesheet v1.0.1 (2026-10-13)
+/* halimozturk.com — family stylesheet v1.0.2 (2026-10-14)
    Extracted from the apex v1 page. Every app site carries a verbatim copy and sets its own face in
    <app>.css: --g1 / --g2 / --acc (stage colours), --aura1..3 (hero backlight), --sheen (headline).
    Do not edit a copy; edit design/family.css in halimozturk-website and re-sync. */
@@ -36,7 +36,8 @@ img { max-width:100% }
 .topnav + .btn.sm { margin-left:0 }
 
 /* hero */
-.hero { position:relative; padding-block:clamp(48px,9vw,112px) 0; isolation:isolate; overflow-x:clip } /* the aura bleeds 20% past each side; clip so iOS Safari cannot pan sideways */
+.hero { position:relative; padding-block:clamp(48px,9vw,112px) 0; isolation:isolate }
+main { overflow-x:clip } /* v1.0.2: the aura bleeds past the content column to the screen edges; clip at the full-width main (not the hero, which cut it at the column edge) so iOS Safari still cannot pan sideways */
 .aura { position:absolute; inset:-10% -20% auto; height:120%; z-index:-1; pointer-events:none; filter:blur(70px); opacity:.55 }
 .aura i { position:absolute; width:38vw; height:38vw; max-width:560px; max-height:560px; border-radius:50%; animation:drift 18s ease-in-out infinite alternate }
 .aura i:nth-child(1) { background:var(--aura1); left:8%; top:30% }
